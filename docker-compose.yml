@@ -1,0 +1,32 @@
+version: "3"
+services:
+  db:
+    container_name: webservice_db
+    image: rethinkdb:2.3.3
+    ports:
+      - "8080:8080"
+      - "29015:29015"
+      - "28015:28015"
+  api:
+    container_name: webservice_api
+    image: jv-agricultor
+    environment:
+      - NODE_ENV=development
+      - PORT=80
+      - DB_HOST=webservice_db
+      - DB_PORT=28015
+    # deploy:
+      # replicas: 5
+      # resources:
+      #   limits:
+      #     cpus: "0.1"
+      #     memory: 50M
+      # restart_policy:
+      #   condition: on-failure
+    ports:
+      - "3000:80"
+    # volumes:
+      # - .:/src/jv-agricultor
+      # - /src/jv-agricultor/node_modules
+    depends_on:
+      - db
