@@ -4,6 +4,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import clientRoutes from './src/client/routes/index';
+import sellerRoutes from './src/seller/routes/index';
 
 const dirname = process.cwd();
 
@@ -15,7 +16,6 @@ class App {
     }
 
     engineSetup() {
-        console.log('engineSetup');
         this.express.set('views', path.join(dirname, 'views'));
         this.express.set('view engine', 'pug');
         this.express.use(logger('dev'));
@@ -46,7 +46,7 @@ class App {
 
     rotas() {
         this.express.use('/cliente/', clientRoutes);
-
+        this.express.use('/vendedor/', sellerRoutes);
     }
 }
 

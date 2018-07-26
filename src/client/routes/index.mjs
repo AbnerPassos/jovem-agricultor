@@ -13,13 +13,12 @@ class ClientRoutes {
      */
     init() {
         this.router.get('/', this.getMainPage);
-        this.router.get('/produtos', this.getAllProdutos)
+        this.router.get('/categorias', this.getAllProdutos)
     }
 
     async getMainPage(req, res, next) {
         try {
             const b = await conn.openConection();
-            console.log(b);
             res.status(200).json({res: "abner"})
         } catch (error) {
             res.status(500).json({title: "Um erro ocorreu"})

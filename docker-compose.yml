@@ -15,6 +15,7 @@ services:
       - PORT=80
       - DB_HOST=webservice_db
       - DB_PORT=28015
+      - DB_NAME=jvagricultor
     # deploy:
       # replicas: 5
       # resources:
@@ -25,8 +26,8 @@ services:
       #   condition: on-failure
     ports:
       - "3000:80"
-    # volumes:
-      # - .:/src/jv-agricultor
-      # - /src/jv-agricultor/node_modules
+    volumes:
+      - .:/src/jv-agricultor
+      - /src/jv-agricultor/node_modules
     depends_on:
       - db
